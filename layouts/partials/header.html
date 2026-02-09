@@ -1,0 +1,61 @@
+<header class="bg-white border-b border-gray-100 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <!-- Logo -->
+            <div class="flex-shrink-0 flex items-center">
+                <a href="/" class="text-2xl font-bold text-brand">2bo Velocity</a>
+            </div>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="/" class="text-gray-700 hover:text-brand px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                <a href="/apps" class="text-gray-700 hover:text-brand px-3 py-2 rounded-md text-sm font-medium">Apps</a>
+                <a href="/news" class="text-gray-700 hover:text-brand px-3 py-2 rounded-md text-sm font-medium">News</a>
+                <a href="/about"
+                    class="text-gray-700 hover:text-brand px-3 py-2 rounded-md text-sm font-medium">About</a>
+                <a href="https://github.com/2bo-velocity"
+                    class="text-gray-700 hover:text-brand px-3 py-2 rounded-md text-sm font-medium">
+                    <i data-feather="github" class="w-5 h-5"></i>
+                </a>
+                <a href="https://x.com/2bo_velocity"
+                    class="text-gray-700 hover:text-brand px-3 py-2 rounded-md text-sm font-medium">
+                    <i data-feather="twitter" class="w-5 h-5"></i>
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <div class="flex md:hidden">
+                <button type="button" class="text-gray-700 hover:text-brand focus:outline-none focus:text-brand"
+                    aria-label="Toggle menu"
+                    onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu (Hidden by default) -->
+    <div class="hidden md:hidden" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <a href="/"
+                class="block text-gray-700 hover:text-brand hover:bg-gray-50 px-3 py-2 rounded-md text-base font-medium">Home</a>
+            <a href="/apps"
+                class="block text-gray-700 hover:text-brand hover:bg-gray-50 px-3 py-2 rounded-md text-base font-medium">Apps</a>
+            <a href="/news"
+                class="block text-gray-700 hover:text-brand hover:bg-gray-50 px-3 py-2 rounded-md text-base font-medium">News</a>
+            <a href="/about"
+                class="block text-gray-700 hover:text-brand hover:bg-gray-50 px-3 py-2 rounded-md text-base font-medium">About</a>
+            <div class="flex space-x-4 px-3 py-2">
+                <a href="https://github.com/2bo-velocity" class="text-gray-700 hover:text-brand">
+                    <i data-feather="github" class="w-6 h-6"></i>
+                </a>
+                <a href="https://x.com/2bo_velocity" class="text-gray-700 hover:text-brand">
+                    <i data-feather="twitter" class="w-6 h-6"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
