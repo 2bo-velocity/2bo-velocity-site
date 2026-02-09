@@ -1,7 +1,7 @@
 baseURL = "https://2bo-velocity.com/"
 title = "2bo Velocity Official Site"
 languageCode = "ja-jp"
-theme = "default"
+#theme = "default"
 paginate = 5
 
 [taxonomies]
