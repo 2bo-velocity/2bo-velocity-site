@@ -1,0 +1,13 @@
+{
+    "name": "2bo-velocity-site",
+    "version": "1.0.0",
+    "description": "2bo Velocity Official Site",
+    "scripts": {
+        "build": "npx tailwindcss -i ./static/css/input.css -o ./static/css/styles.css --minify",
+        "dev": "npx tailwindcss -i ./static/css/input.css -o ./static/css/styles.css --watch"
+    },
+    "devDependencies": {
+        "tailwindcss": "^3.4.1",
+        "@tailwindcss/typography": "^0.5.10"
+    }
+}
