@@ -1,9 +1,65 @@
 baseURL = "https://2bo-velocity.com/"
-title = "2bo Velocity Official Site"
-languageCode = "ja-jp"
-#theme = "default"
-paginate = 5
+languageCode = "ja"
+title = "2bo - Small. Fast. Reliable."
+theme = ""
 
+# Pagination
+paginate = 10
+
+# Markup settings
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = "monokai"
+
+# Params
+[params]
+  description = "Small. Fast. Reliable. 継続的なツール開発でエンジニアリング資産を蓄積"
+  author = "2bo"
+  ogimage = "/images/og-image.png"
+  twitterhandle = "@2bo_velocity"
+
+# Menu
+[[menu.main]]
+  name = "Apps"
+  url = "/apps"
+  weight = 1
+
+[[menu.main]]
+  name = "News"
+  url = "/news"
+  weight = 2
+
+[[menu.main]]
+  name = "About"
+  url = "/about"
+  weight = 3
+
+[[menu.main]]
+  name = "Blog"
+  url = "https://2bo.dev"
+  weight = 4
+
+# Taxonomies
 [taxonomies]
   tag = "tags"
   category = "categories"
+
+# Output formats
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  section = ["HTML", "RSS"]
+
+# Privacy
+[privacy]
+  [privacy.googleAnalytics]
+    disable = false
+    anonymizeIP = true
+    respectDoNotTrack = true
+
+# Security
+[security]
+  [security.exec]
+    allow = ['^(dart-)?sass(-embedded)?$', '^go$', '^npx$', '^postcss$', '^tailwindcss$']

@@ -1,53 +1,55 @@
-{{ define "main" }}
-<div class="min-h-screen bg-white text-gray-700 font-sans">
+<!DOCTYPE html>
+<html lang="ja">
 
-    <!-- Header removed (moved to baseof.html) -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="2bo - Small. Fast. Reliable. 継続的なツール開発でエンジニアリング資産を蓄積">
+    <meta name="keywords" content="2bo, developer tools, CLI tools, productivity, open source">
+    <meta name="author" content="2bo">
 
-    <!-- Hero Section -->
-    <section class="text-center py-12 md:py-20">
-        <h1 class="text-3xl md:text-5xl font-bold mb-4 text-brand">2bo Velocity</h1>
-        <p class="text-gray-700 text-lg md:text-xl max-w-2xl mx-auto px-4">
-            小型ツール開発・アプリ紹介・最新ニュースをお届けします。
-        </p>
-    </section>
+    <!-- Open Graph -->
+    <meta property="og:title" content="2bo - Small. Fast. Reliable.">
+    <meta property="og:description" content="継続的なツール開発でエンジニアリング資産を蓄積">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://2bo-velocity.com">
 
-    <!-- Apps Section -->
-    <section class="max-w-5xl mx-auto px-6 py-12">
-        <h2 class="text-3xl font-bold text-brand mb-6">アプリ紹介</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {{ range .Site.RegularPages }}
-            {{ if eq .Section "apps" }}
-            <div class="bg-gray-100 p-6 rounded-lg hover:bg-gray-200 transition">
-                <h3 class="text-xl font-bold text-brand mb-2">{{ .Title }}</h3>
-                <p class="text-gray-700 mb-4">{{ .Summary }}</p>
-                <a href="{{ .RelPermalink }}" class="text-brand hover:text-brand-light font-semibold">詳細 →</a>
-            </div>
-            {{ end }}
-            {{ end }}
-        </div>
-    </section>
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@2bo_velocity">
+    <meta name="twitter:title" content="2bo - Small. Fast. Reliable.">
+    <meta name="twitter:description" content="継続的なツール開発でエンジニアリング資産を蓄積">
 
-    <!-- News Section -->
-    <section class="max-w-5xl mx-auto px-6 py-12">
-        <h2 class="text-3xl font-bold text-brand mb-6">最新ニュース</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {{ range first 3 (where .Site.RegularPages "Section" "news") }}
-            <div class="bg-gray-100 p-6 rounded-lg hover:bg-gray-200 transition">
-                <h3 class="text-xl font-bold text-brand mb-2">{{ .Title }}</h3>
-                <p class="text-gray-700 text-sm mb-4">{{ .Date.Format "2006-01-02" }}</p>
-                <p class="text-gray-700 mb-4">{{ .Summary }}</p>
-                <a href="{{ .RelPermalink }}" class="text-brand hover:text-brand-light font-semibold">続きを読む →</a>
-            </div>
-            {{ end }}
-        </div>
-    </section>
+    <title>2bo - Small. Fast. Reliable.</title>
 
-    <!-- Footer -->
-    <footer class="text-center text-gray-700 py-6 border-t border-gray-100">
-        © 2026 2bo Velocity |
-        <a href="https://github.com/2bo-velocity" class="hover:text-brand-light">GitHub</a> |
-        <a href="https://x.com/2bo_velocity" class="hover:text-brand-light">X</a>
-    </footer>
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="/css/main.css">
 
-</div>
-{{ end }}
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+
+<body class="font-sans antialiased bg-white text-gray-900">
+
+    {{ partial "header.html" . }}
+
+    <main>
+        {{ partial "hero.html" . }}
+        {{ partial "app-cards.html" . }}
+        {{ partial "news.html" . }}
+    </main>
+
+    {{ partial "footer.html" . }}
+
+    <!-- JavaScript -->
+    <script src="/js/menu.js"></script>
+
+</body>
+
+</html>
