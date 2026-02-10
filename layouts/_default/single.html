@@ -1,19 +1,162 @@
 {{ define "main" }}
-<div class="min-h-screen bg-white text-gray-700 font-sans">
+<article class="py-20 lg:py-28">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    <!-- Header removed (moved to baseof.html) -->
+        <!-- Article Header -->
+        <header class="mb-12">
+            <!-- Breadcrumb -->
+            <nav class="mb-6 text-sm text-gray-500">
+                <ol class="flex items-center space-x-2">
+                    <li><a href="/" class="hover:text-gray-900">Home</a></li>
+                    <li><span class="mx-2">/</span></li>
+                    <li><a href="{{ .Section | relURL }}" class="hover:text-gray-900">{{ .Section | humanize }}</a></li>
+                    <li><span class="mx-2">/</span></li>
+                    <li class="text-gray-900">{{ .Title }}</li>
+                </ol>
+            </nav>
 
-    <article class="max-w-3xl mx-auto px-6 py-12">
-        <h1 class="text-3xl md:text-4xl font-bold text-brand mb-4">{{ .Title }}</h1>
-        <div class="text-gray-500 mb-8">{{ .Date.Format "2006-01-02" }}</div>
-        <div class="prose prose-blue max-w-none">
+            <!-- Meta Information -->
+            <div class="flex items-center space-x-4 mb-6 text-sm text-gray-600">
+                {{ if .Date }}
+                <time datetime="{{ .Date.Format " 2006-01-02" }}">
+                    {{ .Date.Format "2006年1月2日" }}
+                </time>
+                {{ end }}
+                {{ if .Params.author }}
+                <span>by {{ .Params.author }}</span>
+                {{ end }}
+                {{ if .ReadingTime }}
+                <span>{{ .ReadingTime }} min read</span>
+                {{ end }}
+            </div>
+
+            <!-- Title -->
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                {{ .Title }}
+            </h1>
+
+            <!-- Description -->
+            {{ if .Description }}
+            <p class="text-xl text-gray-600 leading-relaxed mb-6">
+                {{ .Description }}
+            </p>
+            {{ end }}
+
+            <!-- Tags -->
+            {{ if .Params.tags }}
+            <div class="flex flex-wrap gap-2">
+                {{ range .Params.tags }}
+                <a href="{{ " tags" | relURL }}/{{ . | urlize }}"
+                    class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium hover:bg-blue-200 transition-colors duration-200">
+                    {{ . }}
+                </a>
+                {{ end }}
+            </div>
+            {{ end }}
+        </header>
+
+        <!-- Featured Image -->
+        {{ if .Params.image }}
+        <figure class="mb-12">
+            <img src="{{ .Params.image }}" alt="{{ .Title }}" class="w-full rounded-2xl shadow-lg">
+            {{ if .Params.imageCaption }}
+            <figcaption class="mt-4 text-sm text-gray-600 text-center">{{ .Params.imageCaption }}</figcaption>
+            {{ end }}
+        </figure>
+        {{ end }}
+
+        <!-- Article Content -->
+        <div class="prose prose-lg prose-blue max-w-none">
             {{ .Content }}
         </div>
-    </article>
 
-    <footer class="text-center text-gray-700 py-6 border-t border-gray-100">
-        © 2026 2bo Velocity
-    </footer>
+        <!-- Article Footer -->
+        <footer class="mt-12 pt-8 border-t border-gray-200">
+            <!-- Share Buttons -->
+            <div class="flex items-center justify-between mb-8">
+                <h3 class="text-lg font-semibold text-gray-900">Share this article</h3>
+                <div class="flex items-center space-x-3">
+                    <a href="https://twitter.com/intent/tweet?url={{ .Permalink }}&text={{ .Title }}" target="_blank"
+                        rel="noopener"
+                        class="flex items-center justify-center w-10 h-10 bg-gray-100 hover:bg-blue-100 text-gray-600 hover:text-blue-600 rounded-lg transition-colors duration-200"
+                        aria-label="Share on Twitter">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink }}" target="_blank"
+                        rel="noopener"
+                        class="flex items-center justify-center w-10 h-10 bg-gray-100 hover:bg-blue-100 text-gray-600 hover:text-blue-600 rounded-lg transition-colors duration-200"
+                        aria-label="Share on Facebook">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
+                    </a>
+                    <button onclick="navigator.clipboard.writeText('{{ .Permalink }}')"
+                        class="flex items-center justify-center w-10 h-10 bg-gray-100 hover:bg-green-100 text-gray-600 hover:text-green-600 rounded-lg transition-colors duration-200"
+                        aria-label="Copy link">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
 
-</div>
+            <!-- Author Info -->
+            {{ if .Params.author }}
+            <div class="bg-gray-50 rounded-2xl p-6">
+                <div class="flex items-start space-x-4">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span class="text-2xl text-white font-bold">{{ substr .Params.author 0 1 }}</span>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-900 mb-2">{{ .Params.author }}</h4>
+                        {{ if .Params.authorBio }}
+                        <p class="text-gray-600">{{ .Params.authorBio }}</p>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+            {{ end }}
+        </footer>
+
+        <!-- Related Posts -->
+        {{ $related := .Site.RegularPages.Related . | first 3 }}
+        {{ if $related }}
+        <section class="mt-16 pt-12 border-t border-gray-200">
+            <h2 class="text-2xl font-bold text-gray-900 mb-8">Related Articles</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                {{ range $related }}
+                <article class="group">
+                    <a href="{{ .Permalink }}" class="block">
+                        <div
+                            class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-200">
+                            {{ if .Params.image }}
+                            <img src="{{ .Params.image }}" alt="{{ .Title }}" class="w-full h-40 object-cover">
+                            {{ else }}
+                            <div class="w-full h-40 bg-gradient-to-br from-blue-500 to-blue-600"></div>
+                            {{ end }}
+                            <div class="p-4">
+                                <h3
+                                    class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-200 line-clamp-2">
+                                    {{ .Title }}
+                                </h3>
+                                <p class="text-sm text-gray-500 mt-2">
+                                    {{ .Date.Format "2006.01.02" }}
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+                {{ end }}
+            </div>
+        </section>
+        {{ end }}
+
+    </div>
+</article>
 {{ end }}
