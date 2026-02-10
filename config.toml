@@ -1,7 +1,7 @@
 baseURL = "https://2bo-velocity.com/"
 languageCode = "ja"
 title = "2bo - Small. Fast. Reliable."
-theme = ""
+# theme = ""
 
 # Pagination
 paginate = 10
